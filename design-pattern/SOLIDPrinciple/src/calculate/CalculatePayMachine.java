@@ -23,12 +23,10 @@ public class CalculatePayMachine extends Frame implements ActionListener, Docume
 	private JButton calcButton = new JButton("Calculate");
 	private JButton resetButton = new JButton("Reset");
 	private JButton end = new JButton("Stop");
-<<<<<<< HEAD
+
 	
 	// CalculatePayMachine 하나가 UI 구성, 이벤트 처리, 급여 계산 로직을 모두 담당하고 있기 떄문에 급여 계산 방식이 바뀌면 UI 클래스를 직접 수정해야 한다. (SRP 위반)
-=======
 
->>>>>>> 85c13cc284f74cd56e94fa364c4b8b0a5a7d8ed7
 	public CalculatePayMachine() {
 		super("Payment Calculation");
 		// init
@@ -152,27 +150,19 @@ public class CalculatePayMachine extends Frame implements ActionListener, Docume
 				tfWorkingHours.requestFocus();
 				return;
 			}
-<<<<<<< HEAD
-			
-			// 시급(10, 15) 로직이 하드코딩 되어 있기 떄문에 변경 시 수정 범위가 커진다. (OCP 위반)
-=======
 
->>>>>>> 85c13cc284f74cd56e94fa364c4b8b0a5a7d8ed7
+			// 시급(10, 15) 로직이 하드코딩 되어 있기 떄문에 변경 시 수정 범위가 커진다. (OCP 위반)
+
 			int payAmount = 0;
 			payAmount = 10 * x + 15 * y;
 
 			tfResult.setText(String.valueOf(payAmount));
 			resetButton.setEnabled(true);
 		}
-<<<<<<< HEAD
-	
-=======
-
 	}
 
 	public static void main(String[] args) {
 		CalculatePayMachine c = new CalculatePayMachine();
 
->>>>>>> 85c13cc284f74cd56e94fa364c4b8b0a5a7d8ed7
 	}
 }
