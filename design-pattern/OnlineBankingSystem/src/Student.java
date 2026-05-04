@@ -1,18 +1,20 @@
-public class Student {
-	public String userId;
-	public String name;
+public class Student extends Person {
 
 	public Student(String userId, String name) {
-		this.userId = userId;
-		this.name = name;
+		super(userId, name); // 부모 생성자 호출
 	}
 
-	// 학생 객체. User가 존재하면 return true, 없으면 false 반환하는 코드 작성
-	public boolean checkStudent(String userId) {
-		if (userId.equals(this.userId)) {
-			return true;
-		} else {
-			return false;
-		}
+	// 오버라이딩: 학생 전용 id 체크
+	@Override
+	public boolean checkUser(String userId) {
+		System.out.println("[학생 인증 확인]");
+		return super.checkUser(userId);
+	}
+
+	// 오버라이딩: 학생 전용 출력
+	@Override
+	public void printInfo() {
+		System.out.print("[학생] ");
+		super.printInfo();
 	}
 }

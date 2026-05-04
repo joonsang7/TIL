@@ -1,18 +1,20 @@
-public class Professor {
+public class Professor extends Person {
 
-	private String professorId;
-
-	public Professor(String professorId) {
-		this.professorId = professorId;
+	public Professor(String professorId, String name) {
+		super(professorId, name); // 부모 생성자 호출
 	}
 
-	// 교수 객체. User가 존재하면 return true, 없으면 false 반환하는 코드 작성
-	public boolean checkProfessor(String userId) {
-		if (userId.equals(this.professorId)) {
-			return true;
-		} else {
-			return false;
-		}
+	// 오버라이딩: 교수 전용 id 체크
+	@Override
+	public boolean checkUser(String userId) {
+		System.out.println("[교수 인증 확인]");
+		return super.checkUser(userId);
 	}
 
+	// 오버라이딩: 교수 전용 출력
+	@Override
+	public void printInfo() {
+		System.out.print("[교수] ");
+		super.printInfo();
+	}
 }
