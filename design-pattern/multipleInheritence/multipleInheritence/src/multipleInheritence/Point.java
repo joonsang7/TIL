@@ -13,3 +13,5 @@ public class Point extends Payment {
 		// 포인트(존재 여부, 사용 가능 여부) 체크 메서드 
 	}
 }
+
+
