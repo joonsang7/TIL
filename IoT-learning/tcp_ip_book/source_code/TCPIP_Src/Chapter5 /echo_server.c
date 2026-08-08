@@ -4,9 +4,11 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <pthread.h>
 
 #define BUF_SIZE 1024
 void error_handling(char *message);
+void *handle_client(void *arg);
 
 int main(int argc, char *argv[])
 {
@@ -47,12 +49,9 @@ int main(int argc, char *argv[])
 			error_handling("accept() error");
 		else
 			printf("Connected client %d \n", i+1);
-	
-		while((str_len=read(clnt_sock, message, BUF_SIZE))!=0)
-			write(clnt_sock, message, str_len);
-
-		close(clnt_sock);
+			printf("Client IP: %s \n", inet_ntoa(clnt_adr.sin_addr));
 	}
+	pthread_create(&t_id, NULL, handle_client, (void*)&clnt_sock);
 
 	close(serv_sock);
 	return 0;
@@ -63,4 +62,16 @@ void error_handling(char *message)
 	fputs(message, stderr);
 	fputc('\n', stderr);
 	exit(1);
+}
+
+void *handle_client(void *arg)
+{
+	int clnt_sock=*((int*)arg);
+	char message[BUF_SIZE];
+	int str_len;
+	while((str_len=read(clnt_sock, message, BUF_SIZE))!=0)
+	{
+		write(clnt_sock, message, str_len);
+	}
+	close(clnt_sock);
 }
